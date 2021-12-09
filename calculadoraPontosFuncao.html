@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Calculadora de Pontos por Função</title>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0px;
+      font-family: arial;
+      color: white;
+    }
+
+    main {
+      background-color: rgb(34, 93, 202);
+      height: 650px;
+    }
+
+    header {
+      background-color: rgb(34, 93, 202);
+      padding-top: 8px;
+      font-size: 20px;
+      text-align: center;
+      height: 50px;
+      font-size: 25px;
+    }
+
+    #input-form {
+      margin: auto;
+      max-width: 1000px;
+      padding-top: 20px;
+    }
+
+    h5 {
+      text-align: center;
+    }
+
+    #form-fpc {
+      width: 500px;
+      margin-right: 50px;
+      float: center;
+    }
+
+    #form-fpc :nth-child(2) {
+      text-align: center;
+    }
+
+    #form-fpc>.form-group>.row {
+      margin: auto;
+    }
+
+    #result-button {
+      margin-top: 10px;
+    }
+
+    #button-calculate {
+      clear: both;
+      margin: auto;
+    }
+
+    footer {
+      background-color: rgb(64, 27, 112);
+      height: 40px;
+      padding-top: 7px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <p>Calculadora de Pontos por Função</p>
+  </header>
+
+  <main>
+    <div id="input-form">
+      
+      <form id="form-fpc">
+        <h5>Complexidade</h5>
+        
+        <div class="form-group">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+              <label>Baixa</label>
+            </div>
+            <div class="col">
+              <label>Média</label>
+            </div>
+            <div class="col">
+              <label>Alta</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de entrada -->
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label data-toggle="tooltip" data-placement="bottom"
+                title="Entrada externa (EE)">
+                Entrada externa</label>
+            </div>
+            <div class="col">
+              <input type="number" name="external-input-simple" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="external-input-average" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="external-input-complex" class="fpc form-control" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label data-toggle="tooltip" data-placement="bottom"
+                title="Saída externa (SE)">
+                Saída externa</label>
+            </div>
+            <div class="col">
+              <input type="number" name="external-output-simple" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="external-output-average" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="external-output-complex" class="fpc form-control" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label data-toggle="tooltip" data-placement="bottom"
+                  title="Consulta externa (CE)">
+                  Consulta externa</label>
+              </div>
+              <div class="col">
+                <input type="number" name="external-output-simple" class="fpc form-control" placeholder="0">
+              </div>
+              <div class="col">
+                <input type="number" name="external-output-average" class="fpc form-control" placeholder="0">
+              </div>
+              <div class="col">
+                <input type="number" name="external-output-complex" class="fpc form-control" placeholder="0">
+              </div>
+            </div>
+          </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label data-toggle="tooltip" data-placement="bottom"
+                title="Arquivo lógico interno (ALI)">
+                Arquivo lógico interno</label>
+            </div>
+            <div class="col">
+              <input type="number" name="ilf-simple" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="ilf-average" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="ilf-complex" class="fpc form-control" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label data-toggle="tooltip" data-placement="bottom"
+                title="Arquivo de interface Externo (AIE)">
+                Arquivo de interface Externo</label>
+            </div>
+            <div class="col">
+              <input type="number" name="exif-simple" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="exif-average" class="fpc form-control" placeholder="0">
+            </div>
+            <div class="col">
+              <input type="number" name="exif-complex" class="fpc form-control" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </form>
+
+
+      <!-- Botao -->
+      <div id="result-button" class="form-group">
+        <div class="row">
+          <div class="col"></div>
+          <div id="button-calculate">
+            <button id="calculate" class="btn btn-primary" onclick="calculateFP()">Calcular Pontos por Função</button>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+
+      <!-- Resultado -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <input id="result" type="number" class="form-control" placeholder="Pontos por função" disabled />
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+</body>
+
+<script>
+  const complexityWeight = [3, 4, 6, 4, 5, 7, 3, 4, 6, 7, 10, 15, 5, 7, 10];
+
+  function calculateFP() {
+    const ufp = Array.prototype.reduce.call(
+      document.getElementsByClassName("fpc"),
+      (prevVal, fpcInput, i) => prevVal + (+fpcInput.value * complexityWeight[i]),
+      0
+    );
+    const tdi = Array.prototype.reduce.call(
+      document.getElementsByClassName("vaf"),
+      (prevVal, vafInput) => prevVal + +vafInput.value,
+      0
+    );
+    //const tca = 0.65 + 0.01 * tdi;
+    const tca = 1;
+    const fp = ufp * tca;
+    document.getElementById("result").value = fp;
+  }
+</script>
+
+<script>
+  $(() => $('[data-toggle="tooltip"]').tooltip());
+</script>
+
+</html>
